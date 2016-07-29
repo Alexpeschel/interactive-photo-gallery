@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css" media="screen">
+  </head>
+  <body>
+    <header class="search">
+      <input class="search-input" id="js-search-input" type="search" name="search" placeholder="Search">
+    </header>
+
+    <div class="wrapper">
+      <div class="gallery">
+        <img class="gallery-item" src="img/Thumbnails/01.jpg" data-src="img/01.jpg" data-text="01.jpgHay BalesI love hay bales. Took this snap on a drive through the countryside past some straw fields." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/02.jpg" data-src="img/02.jpg" data-text="02.jpg Lake The lake was so calm today. We had a great view of the snow on the mountains from here." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/03.jpg" data-src="img/03.jpg" data-text="03.jpg
+			Canyon
+			I hiked to the top of the mountain and got this picture of the canyon and trees below." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/04.jpg" data-src="img/04.jpg" data-text="
+04.jpg
+Iceberg
+It was amazing to see an iceberg up close, it was so cold but didn’t snow today." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/05.jpg" data-src="img/05.jpg" data-text="05.jpg
+Desert
+The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/06.jpg" data-src="img/06.jpg" data-text="
+06.jpg
+Fall
+Fall is coming, I love when the leaves on the trees start to change color." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/07.jpg" data-src="img/07.jpg" data-text="
+07.jpg
+Plantation
+I drove past this plantation yesterday, everything is so green!" alt="" />
+        <img class="gallery-item" src="img/Thumbnails/08.jpg" data-src="img/08.jpg" data-text="08.jpg
+Dunes
+My summer vacation to the Oregon Coast. I love the sandy dunes!" alt="" />
+        <img class="gallery-item" src="img/Thumbnails/09.jpg" data-src="img/09.jpg" data-text="09.jpg
+Countryside Lane
+We enjoyed a quiet stroll down this countryside lane." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/10.jpg" data-src="img/10.jpg" data-text="10.jpg
+Sunset
+Sunset at the coast! The sky turned a lovely shade of orange.
+
+" alt="" />
+        <img class="gallery-item" src="img/Thumbnails/11.jpg" data-src="img/11.jpg" data-text="11.jpg
+Cave
+I did a tour of a cave today and the view of the landscape below was breathtaking." alt="" />
+        <img class="gallery-item" src="img/Thumbnails/12.jpg" data-src="img/12.jpg" data-text="12.jpg
+Bluebells
+I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in." alt="" />
+      </div>
+    </div>
+
+    <div class="lightbox" id="js-lightbox">
+      <div class="lightbox-bg" id="js-lightbox-bg"></div>
+      <figure>
+        <img class="lightbox-img" id="js-lightbox-img" src="img/01.jpg" alt="" />
+        <figcaption class="lightbox-text" id="js-lightbox-text"></figcaption>
+      </figure>
+      <div class="controller">
+        <span class="prev" id="js-prev"></span>
+        <span class="next" id="js-next"></span>
+      </div>
+    </div>
+    <script src="js/script.js" charset="utf-8"></script>
+  </body>
+</html>
