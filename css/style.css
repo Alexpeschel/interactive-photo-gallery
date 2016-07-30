@@ -21,14 +21,34 @@ body {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   margin: 0 -30px;
+  overflow: hidden;
 }
+
 .gallery-item {
+  opacity: 1;
   padding: 30px;
+
+  animation-duration: 1.5s;
+  animation-name: itemFadeIn;
+  animation-fill-mode: forwards;
 }
 .hide {
-  display: none;
+  animation-duration: 1.5s;
+  animation-name: itemFadeOut;
+  animation-fill-mode: forwards;
+  /*animation-timing-function: step-end;*/
+}
+@keyframes itemFadeOut {
+  0% { opacity: 1; width: 200px; height: 200px; padding: 30px; }
+  99% { opacity: 0; }
+  100% { opacity: 0; width: 0; height: 0; padding: 0; }
+}
+@keyframes itemFadeIn {
+  0% { opacity: 0; height: 0; width: 0; padding: 0; }
+  99% { opacity: 1; }
+  100% { opacity: 1; height: 200px; width: 200px; padding: 30px; }
 }
 .lightbox {
   position: fixed;

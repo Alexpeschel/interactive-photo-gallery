@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.classList.remove('visible');
   }, false);
 
-  function thePrevImage() {
+  prev.addEventListener('click', function() {
     if(currentImage == 1) {
       currentImage = galleryItems.length;
     } else {
@@ -40,13 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
     prevImage = currentImage;
     img.src = document.getElementById(prevImage).dataset.src;
     lightboxText.innerHTML = document.getElementById(prevImage).dataset.text;
-  }
-
-  prev.addEventListener('click', function() {
-    thePrevImage();
   }, false);
 
-  function theNextImage() {
+  next.addEventListener('click', function() {
     if(currentImage == galleryItems.length) {
       currentImage = 1;
     } else {
@@ -55,19 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     nextImage = currentImage;
     img.src = document.getElementById(nextImage).dataset.src;
     lightboxText.innerHTML = document.getElementById(nextImage).dataset.text;
-  }
-
-  next.addEventListener('click', function() {
-    theNextImage();
   }, false);
-
-  document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 37) {
-      thePrevImage();
-    } else if(event.keyCode == 39) {
-      theNextImage();
-    }
-  });
 
   // SEARCH
   searchInput.addEventListener('keyup', function() {
