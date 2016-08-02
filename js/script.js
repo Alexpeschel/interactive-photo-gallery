@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   var galleryItems = document.querySelectorAll('.gallery-item');
+  var container = document.getElementById('js-figure');
   var img = document.getElementById('js-lightbox-img');
+  var iframe = document.getElementById('js-lightbox-iframe');
   var lightbox = document.getElementById('js-lightbox');
   var lightboxBg = document.getElementById('js-lightbox-bg');
   var lightboxText = document.getElementById('js-lightbox-text');
@@ -14,7 +16,37 @@ document.addEventListener('DOMContentLoaded', function() {
   var prevImage;
   var nextImage;
   var searchInputValue;
+  var iframeNode;
+  var imgNode;
 
+  function isVideo(src) {
+    img = document.getElementById('js-lightbox-img')
+    if(container.contains(img)) {
+      if(src.indexOf("youtube") > 0) {
+        iframeNode = document.createElement("iframe");
+        iframeNode.setAttribute("id", "js-lightbox-iframe");
+        iframeNode.setAttribute("class", "lightbox-img");
+        iframeNode.setAttribute("src", src);
+        iframeNode.setAttribute("frameborder", "0");
+        iframeNode.setAttribute("allowfullscreen", "allowfullscreen");
+        container.replaceChild(iframeNode, img);
+      } else {
+        img.src = src;
+      }
+    } else {
+      if(src.indexOf("youtube") > 0) {
+        iframe.src = src;
+      } else {
+        iframe = document.getElementById('js-lightbox-iframe');
+        imgNode = document.createElement("img");
+        imgNode.setAttribute("id", "js-lightbox-img");
+        imgNode.setAttribute("class", "lightbox-img");
+        imgNode.setAttribute("src", src);
+        imgNode.setAttribute("allowfullscreen", "allowfullscreen");
+        container.replaceChild(imgNode, iframe);
+      }
+    }
+  }
 
   function previousItem() {
     if(currentImage == 1) {
@@ -23,7 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
       currentImage = currentImage - 1;
     }
     prevImage = currentImage;
-    img.src = document.getElementById(prevImage).dataset.src;
+    imgSrc = document.getElementById(prevImage).dataset.src
+    console.log(imgSrc);
+    isVideo(imgSrc);
     lightboxText.innerHTML = document.getElementById(prevImage).dataset.text;
   }
 
@@ -34,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
       currentImage = parseInt(currentImage) + 1;
     }
     nextImage = currentImage;
-    img.src = document.getElementById(nextImage).dataset.src;
+    imgSrc = document.getElementById(nextImage).dataset.src
+    isVideo(imgSrc);
     lightboxText.innerHTML = document.getElementById(nextImage).dataset.text;
   }
 
@@ -45,7 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
       lightbox.classList.add('visible');
       currentImage = this.id;
       imgSrc = this.dataset.src;
-      img.src = imgSrc;
+      isVideo(imgSrc);
+      // img.src = imgSrc;
       lightboxText.innerHTML = this.dataset.text;
       document.onkeydown = checkKey;
 
