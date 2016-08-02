@@ -15,6 +15,29 @@ document.addEventListener('DOMContentLoaded', function() {
   var nextImage;
   var searchInputValue;
 
+
+  function previousItem() {
+    if(currentImage == 1) {
+      currentImage = galleryItems.length;
+    } else {
+      currentImage = currentImage - 1;
+    }
+    prevImage = currentImage;
+    img.src = document.getElementById(prevImage).dataset.src;
+    lightboxText.innerHTML = document.getElementById(prevImage).dataset.text;
+  }
+
+  function nextItem() {
+    if(currentImage == galleryItems.length) {
+      currentImage = 1;
+    } else {
+      currentImage = parseInt(currentImage) + 1;
+    }
+    nextImage = currentImage;
+    img.src = document.getElementById(nextImage).dataset.src;
+    lightboxText.innerHTML = document.getElementById(nextImage).dataset.text;
+  }
+
   [].forEach.call( galleryItems, function(el) {
     el.id = imageCount;
     imageCount++;
@@ -24,6 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
       imgSrc = this.dataset.src;
       img.src = imgSrc;
       lightboxText.innerHTML = this.dataset.text;
+      document.onkeydown = checkKey;
+
+      function checkKey(e) {
+
+          e = e || window.event;
+
+          if (e.keyCode == '37') {
+            // left arrow
+            previousItem();
+
+          }
+          else if (e.keyCode == '39') {
+             // right arrow
+             nextItem();
+          }
+
+      }
    }, false);
   });
 
@@ -31,26 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.classList.remove('visible');
   }, false);
 
+
   prev.addEventListener('click', function() {
-    if(currentImage == 1) {
-      currentImage = galleryItems.length;
-    } else {
-      currentImage = currentImage - 1;
-    }
-    prevImage = currentImage;
-    img.src = document.getElementById(prevImage).dataset.src;
-    lightboxText.innerHTML = document.getElementById(prevImage).dataset.text;
+    previousItem();
   }, false);
 
   next.addEventListener('click', function() {
-    if(currentImage == galleryItems.length) {
-      currentImage = 1;
-    } else {
-      currentImage = parseInt(currentImage) + 1;
-    }
-    nextImage = currentImage;
-    img.src = document.getElementById(nextImage).dataset.src;
-    lightboxText.innerHTML = document.getElementById(nextImage).dataset.text;
+    nextItem();
   }, false);
 
   // SEARCH
