@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
   searchInput.addEventListener('keyup', function() {
     searchInputValue = searchInput.value;
     [].forEach.call( galleryItems, function(el) {
-      if(el.dataset.text.search(searchInputValue) < 0) {
+      if(el.dataset.text.search(new RegExp(searchInputValue, "i")) == -1) {
         el.classList.add('hide');
       } else {
         el.classList.remove('hide');
