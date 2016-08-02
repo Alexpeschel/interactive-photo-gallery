@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   var galleryItems = document.querySelectorAll('.gallery-item');
-  var container = document.getElementById('js-figure');
+  var container = document.getElementById('js-lightbox-figure');
+  var closeButton = document.getElementById('js-lightbox-close');
   var img = document.getElementById('js-lightbox-img');
   var iframe = document.getElementById('js-lightbox-iframe');
+  var iframeContainer = document.getElementById('js-lightbox-iframe-container');
   var lightbox = document.getElementById('js-lightbox');
   var lightboxBg = document.getElementById('js-lightbox-bg');
   var lightboxText = document.getElementById('js-lightbox-text');
@@ -25,29 +27,34 @@ document.addEventListener('DOMContentLoaded', function() {
     img = document.getElementById('js-lightbox-img')
     if(container.contains(img)) {
       if(src.indexOf("youtube") > 0) {
+        iframeContainerNode = document.createElement("div");
+        iframeContainerNode.setAttribute("id", "js-lightbox-iframe-container");
+        iframeContainerNode.setAttribute("class", "lightbox-iframe-container");
         iframeNode = document.createElement("iframe");
         iframeNode.setAttribute("id", "js-lightbox-iframe");
-        iframeNode.setAttribute("class", "lightbox-img");
+        iframeNode.setAttribute("class", "lightbox-iframe");
         iframeNode.setAttribute("src", src);
         iframeNode.setAttribute("frameborder", "0");
         iframeNode.setAttribute("allowfullscreen", "allowfullscreen");
-        container.replaceChild(iframeNode, img);
+        iframeContainerNode.appendChild(iframeNode);
+        container.replaceChild(iframeContainerNode, img);
       } else {
         img.src = src;
       }
     }
     // else remove iframe and create image
     else {
+      iframe = document.getElementById('js-lightbox-iframe');
+      iframeContainer = document.getElementById('js-lightbox-iframe-container');
       if(src.indexOf("youtube") > 0) {
         iframe.src = src;
       } else {
-        iframe = document.getElementById('js-lightbox-iframe');
         imgNode = document.createElement("img");
         imgNode.setAttribute("id", "js-lightbox-img");
         imgNode.setAttribute("class", "lightbox-img");
         imgNode.setAttribute("src", src);
         imgNode.setAttribute("allowfullscreen", "allowfullscreen");
-        container.replaceChild(imgNode, iframe);
+        container.replaceChild(imgNode, iframeContainer);
       }
     }
   }
@@ -110,6 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // close lightbox
   lightboxBg.addEventListener('click', function() {
+    lightbox.classList.remove('visible');
+  }, false);
+  closeButton.addEventListener('click', function() {
     lightbox.classList.remove('visible');
   }, false);
 
