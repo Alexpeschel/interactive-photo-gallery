@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var iframeNode;
   var imgNode;
 
+  // check if source is a Youtube Video
+  // if true remove image and create iframe
   function isVideo(src) {
     img = document.getElementById('js-lightbox-img')
     if(container.contains(img)) {
@@ -33,7 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         img.src = src;
       }
-    } else {
+    }
+    // else remove iframe and create image
+    else {
       if(src.indexOf("youtube") > 0) {
         iframe.src = src;
       } else {
@@ -48,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // get previous item
   function previousItem() {
     if(currentImage == 1) {
       currentImage = galleryItems.length;
@@ -60,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     isVideo(imgSrc);
     lightboxText.innerHTML = document.getElementById(prevImage).dataset.text;
   }
-
+  // get next item
   function nextItem() {
     if(currentImage == galleryItems.length) {
       currentImage = 1;
@@ -72,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     isVideo(imgSrc);
     lightboxText.innerHTML = document.getElementById(nextImage).dataset.text;
   }
-
+  // add Eventlistener to items
   [].forEach.call( galleryItems, function(el) {
     el.id = imageCount;
     imageCount++;
@@ -103,15 +108,16 @@ document.addEventListener('DOMContentLoaded', function() {
    }, false);
   });
 
+  // close lightbox
   lightboxBg.addEventListener('click', function() {
     lightbox.classList.remove('visible');
   }, false);
 
-
+  // click previous button
   prev.addEventListener('click', function() {
     previousItem();
   }, false);
-
+  // click next button
   next.addEventListener('click', function() {
     nextItem();
   }, false);
@@ -120,13 +126,11 @@ document.addEventListener('DOMContentLoaded', function() {
   searchInput.addEventListener('keyup', function() {
     searchInputValue = searchInput.value;
     [].forEach.call( galleryItems, function(el) {
-      console.log(searchInputValue);
       if(el.dataset.text.search(searchInputValue) < 0) {
         el.classList.add('hide');
       } else {
         el.classList.remove('hide');
       }
-      console.log(el.dataset.text.search(searchInputValue));
     });
   }, false);
 });
