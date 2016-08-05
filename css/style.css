@@ -152,10 +152,16 @@ body {
   z-index: 99;
   cursor: pointer;
 }
+.lightbox-close::after {
+  content: url(../img/icons/close.png);
+}
 
 @media (min-width: 1024px) {
 
   .controller {
     width: 90%;
+  }
+  .lighbox-bg {
+    background: transparent;
   }
 }
